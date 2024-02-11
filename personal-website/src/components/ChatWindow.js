@@ -33,7 +33,8 @@ export default function ChatWindow() {
   }
 
   async function getStreamedResponse(message, update) {
-    const url = "http://127.0.0.1:4444/getResponse";
+    const url =
+      "https://3p6ynoc4j3yrxcqppkgkujdaoy0vkacn.lambda-url.us-west-1.on.aws/";
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -44,22 +45,11 @@ export default function ChatWindow() {
     const reader = response.body.getReader();
     const decoder = new TextDecoder("utf-8");
     let partial = "";
-    while (true) {
-      const { done, value } = await reader.read();
-
-      if (done) {
-        break;
-      }
-      partial += decoder.decode(value);
-      const lines = partial.split("\n");
-      partial = lines.pop();
-      for (const line of lines) {
-        //console.log(line);
-        partial += line;
-        update(partial);
-      }
-    }
-    if (partial) {
+    let done = false;
+    let value;
+    while (!done) {
+      ({ done, value } = await reader.read());
+      partial += decoder.decode(value).replaceAll("~", "");
       update(partial);
     }
   }
@@ -77,9 +67,15 @@ export default function ChatWindow() {
   };
 
   return (
-    <div className="w-1/2 ">
-      <div className="mt-10 h-[400px] container overflow-y-auto pr-3">
+    <div className="w-1/2 mx-auto h-[55%] absolute left-1/4 top-1/4">
+      <div className="mt-10 h-full container overflow-y-auto pr-3 flex flex-col-reverse">
         <ul>
+          <li className="text-center mb-3">
+            <div className="text-5xl font-bold mt-32">Let's talk.</div>
+            <div className="text-sm font-bold mt-2 mb-32">
+              Additional questions? Email stephenwdean@gmail.com
+            </div>
+          </li>
           {messages.map((message, index) => (
             <li
               key={index}
@@ -90,10 +86,9 @@ export default function ChatWindow() {
           ))}
         </ul>
       </div>
-
       <input
         type="text"
-        className="text-black inline rounded-full w-[45%] mt-10 pl-3"
+        className="text-black rounded-full w-[90%] mt-10 pl-3"
         placeholder="What are your career plans?"
         onChange={(event) => {
           setInputMessage(event.target.value);
@@ -103,7 +98,7 @@ export default function ChatWindow() {
       />
       <button
         id="sender"
-        className="ml-2 inline"
+        className="ml-3 mb-3 send "
         onClick={() =>
           getChatBotResponse({
             name: "you",

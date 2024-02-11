@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
 }
 
 .App-logo {
@@ -38,12 +37,58 @@
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.social-link {
+  position: relative;
+  text-decoration: none;
+  color: #6f85ae; /* Replace with your desired link color */
+  transition: color 0.3s ease; /* Add color transition for smooth effect */
+}
+
+.social-link:hover {
+  color: white; /* Replace with your desired hover color */
+}
+
+.social-link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px; /* Adjust the thickness of the underline as needed */
+  background-color: white; /* Replace with your desired hover color */
+  transition: width 0.3s ease; /* Add width transition for fade-in effect */
+}
+
+.social-link:hover::before {
+  width: 100%;
+}
+
+.send {
+  color: rgb(255, 255, 255);
+  background: linear-gradient(
+    to right,
+    #ab98e0,
+    #ab98e0 50%,
+    rgb(255, 255, 255) 50%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 275ms ease;
+  text-decoration: none;
+  &:hover {
+    background-position: 0 100%;
+  }
 }
 
 .App-link {
@@ -57,4 +102,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.dot {
+  height: 20px;
+  width: 20px;
+  background-color: #5b507a;
+  border-radius: 50%;
 }
