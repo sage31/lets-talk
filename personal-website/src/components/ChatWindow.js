@@ -5,7 +5,7 @@ export default function ChatWindow() {
     {
       name: "Stevie Dean (AI)",
       role: "assistant",
-      profileImgSrc: "./lets-talk/images/me.jpg",
+      profileImgSrc: "./images/me.jpg",
       content: "Ask me anything!",
       isSender: false,
     },
@@ -23,7 +23,7 @@ export default function ChatWindow() {
           {
             name: "Stevie Dean (AI)",
             role: "assistant",
-            profileImgSrc: "./lets-talk/images/me.jpg",
+            profileImgSrc: "./images/me.jpg",
             content: value,
             isSender: false,
           },

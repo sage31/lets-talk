@@ -3,7 +3,7 @@ export default function Header() {
     <div className="relative w-[95%] pt-10 laptop:pt-0 laptop:w-[59%] mx-auto">
       <div className="w-full flex items-end">
         <img
-          src="./lets-talk/images/me_nobg.png"
+          src="./images/me_nobg.png"
           alt="Stevie Dean"
           className="inline w-[23%]  laptop:w-[23%] left-[0%] laptop:pr-4 aspect-auto"
         />
