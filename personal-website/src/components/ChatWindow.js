@@ -67,20 +67,20 @@ export default function ChatWindow() {
   };
 
   return (
-    <div className="w-1/2 mx-auto h-[55%] absolute left-1/4 top-1/4">
-      <div className="mt-10 h-full container overflow-y-auto pr-3 flex flex-col-reverse">
-        <ul>
-          <li className="text-center mb-3">
-            <div className="text-5xl font-bold mt-32">Let's talk.</div>
-            <div className="text-sm font-bold mt-2 mb-32">
+    <div className="w-[98%] left-[2%] h-[60%] laptop:w-[59%] mx-auto laptop:h-[55%] absolute laptop:left-[20.5%] top-1/4">
+      <div className="laptop:mt-10 h-full container overflow-y-auto pr-3 flex flex-col-reverse">
+        <ul className="flex flex-col">
+          <li className="text-center mb-3 max-sm:ml-3">
+            <div className="text-4xl laptop:text-5xl font-bold mt-20 laptop:mt-20">
+              Let's talk.
+            </div>
+            <div className="text-sm font-bold mt-2 mb-40 laptop:mb-24">
               Additional questions? Email stephenwdean@gmail.com
             </div>
           </li>
+
           {messages.map((message, index) => (
-            <li
-              key={index}
-              className={message.isSender ? "text-right" : "text-left"}
-            >
+            <li key={index} className={message.isSender ? "self-end" : ""}>
               <Message messageData={message} />
             </li>
           ))}
@@ -88,7 +88,7 @@ export default function ChatWindow() {
       </div>
       <input
         type="text"
-        className="text-black rounded-full w-[90%] mt-10 pl-3"
+        className="text-black rounded-full w-[80%] ml-2 laptop:w-[85%] mt-10 pl-3"
         placeholder="What are your career plans?"
         onChange={(event) => {
           setInputMessage(event.target.value);

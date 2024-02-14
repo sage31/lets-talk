@@ -4,7 +4,7 @@ import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="App App-header">
+    <div className="App">
       <Header />
       <ChatWindow />
     </div>

@@ -1,15 +1,14 @@
 .App {
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: #282c34;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
 /* width */
@@ -34,26 +33,15 @@
   background-color: #555;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .social-link {
   position: relative;
   text-decoration: none;
-  color: #6f85ae; /* Replace with your desired link color */
-  transition: color 0.3s ease; /* Add color transition for smooth effect */
+  color: #6f85ae;
+  transition: color 0.3s ease;
 }
 
 .social-link:hover {
-  color: white; /* Replace with your desired hover color */
+  color: white;
 }
 
 .social-link::before {
@@ -62,9 +50,9 @@
   bottom: 0;
   left: 0;
   width: 0;
-  height: 2px; /* Adjust the thickness of the underline as needed */
-  background-color: white; /* Replace with your desired hover color */
-  transition: width 0.3s ease; /* Add width transition for fade-in effect */
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
 }
 
 .social-link:hover::before {

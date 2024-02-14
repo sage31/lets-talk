@@ -1,20 +1,21 @@
 export default function Message({ messageData }) {
-  let messageBaseStyle = "bg-chill-violet rounded-xl max-w-xl px-3 py-2 ";
+  let messageBaseStyle =
+    "bg-chill-violet rounded-xl md:max-w-xl max-w-md  px-3 py-2 text-left";
   let dotStyle = "dot block mt-2 ";
-  let nameStyle = "text-sm mt-10 ";
+  let nameStyle = "text-sm mt-8 ";
 
   if (messageData.role === "user") {
-    messageBaseStyle += " mr-6";
-    dotStyle += "float-right mr-3";
+    messageBaseStyle += "ml-5 mr-3";
+    dotStyle += "float-right mr-2";
     nameStyle += "text-right";
   } else {
-    messageBaseStyle += " ml-6";
-    dotStyle += "text-left ml-3";
+    messageBaseStyle += " ml-3";
+    dotStyle += "text-left ml-2 mb-2";
     nameStyle += "inline";
   }
 
   return (
-    <div className="inline-block">
+    <div className={"inline-block mt-3 "}>
       <div
         className={messageBaseStyle}
         dangerouslySetInnerHTML={{ __html: messageData.content }}
