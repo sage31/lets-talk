@@ -63,6 +63,46 @@ export default function ChatWindow() {
     }
   };
 
+  const getMobileOperatingSystem = () => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    // Windows Phone must come first because its UA also contains "Android"
+    if (/windows phone/i.test(userAgent)) {
+      return "windows";
+    } else if (/android/i.test(userAgent)) {
+      return "android";
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return "ios";
+    } else {
+      return "unknown";
+    }
+  };
+  document.addEventListener("DOMContentLoaded", () => {
+    "use strict";
+    const input = document.querySelector("input");
+    const inputColor = "white";
+    const backgroundColor = "black";
+
+    if (input) {
+      if (getMobileOperatingSystem() === "ios") {
+        input.addEventListener(
+          "focus",
+          () => {
+            document.body.style.backgroundColor = inputColor;
+          },
+          false
+        );
+
+        input.addEventListener(
+          "focusout",
+          () => {
+            document.body.style.backgroundColor = backgroundColor;
+          },
+          false
+        );
+      }
+    }
+  });
+
   return (
     <div className="w-[98%] left-[2%] h-[60%] laptop:w-[59%] mx-auto laptop:h-[55%] absolute laptop:left-[20.5%] top-1/4">
       <div className="laptop:mt-10 h-full container overflow-y-auto pr-3 flex flex-col-reverse">
@@ -86,29 +126,35 @@ export default function ChatWindow() {
           ))}
         </ul>
       </div>
-      <input
-        type="text"
-        className="text-black rounded-full w-[80%] ml-2 laptop:w-[85%] mt-10 pl-3"
-        placeholder="What are your career plans?"
-        onChange={(event) => {
-          setInputMessage(event.target.value);
-        }}
-        value={inputMessage}
-        onKeyDown={handleKeyPress}
-      />
-      <button
-        id="sender"
-        className="ml-3 mb-3 send "
-        onClick={() =>
-          getChatBotResponse({
-            name: "you",
-            role: "user",
-            content: inputMessage,
-          })
-        }
-      >
-        Send
-      </button>
+      <div className="fixed-container">
+        <div className="relative-container">
+          <form action="">
+            <input
+              type="text"
+              className="text-black rounded-full w-[80%] ml-2 laptop:w-[85%] mt-10 pl-3"
+              placeholder="What are your career plans?"
+              onChange={(event) => {
+                setInputMessage(event.target.value);
+              }}
+              value={inputMessage}
+              onKeyDown={handleKeyPress}
+            />
+            <button
+              id="sender"
+              className="ml-3 mb-3 send "
+              onClick={() =>
+                getChatBotResponse({
+                  name: "you",
+                  role: "user",
+                  content: inputMessage,
+                })
+              }
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
