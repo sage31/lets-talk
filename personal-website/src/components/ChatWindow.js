@@ -7,7 +7,6 @@ export default function ChatWindow() {
       role: "assistant",
       profileImgSrc: "./images/me.jpg",
       content: "Ask me anything!",
-      isSender: false,
     },
   ]);
 
@@ -25,7 +24,6 @@ export default function ChatWindow() {
             role: "assistant",
             profileImgSrc: "./images/me.jpg",
             content: value,
-            isSender: false,
           },
         ])
       );
@@ -61,7 +59,6 @@ export default function ChatWindow() {
         name: "you",
         role: "user",
         content: inputMessage,
-        isSender: true,
       });
     }
   };
@@ -80,7 +77,10 @@ export default function ChatWindow() {
           </li>
 
           {messages.map((message, index) => (
-            <li key={index} className={message.isSender ? "self-end" : ""}>
+            <li
+              key={index}
+              className={message.role === "user" ? "self-end" : ""}
+            >
               <Message messageData={message} />
             </li>
           ))}
@@ -104,7 +104,6 @@ export default function ChatWindow() {
             name: "you",
             role: "user",
             content: inputMessage,
-            isSender: true,
           })
         }
       >
