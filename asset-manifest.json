@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/lets-talk/static/css/main.5f79c22b.css",
-    "main.js": "/lets-talk/static/js/main.9cdeae06.js",
+    "main.js": "/lets-talk/static/js/main.64620745.js",
     "static/js/592.74932e6f.chunk.js": "/lets-talk/static/js/592.74932e6f.chunk.js",
     "index.html": "/lets-talk/index.html",
     "main.5f79c22b.css.map": "/lets-talk/static/css/main.5f79c22b.css.map",
-    "main.9cdeae06.js.map": "/lets-talk/static/js/main.9cdeae06.js.map",
+    "main.64620745.js.map": "/lets-talk/static/js/main.64620745.js.map",
     "592.74932e6f.chunk.js.map": "/lets-talk/static/js/592.74932e6f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5f79c22b.css",
-    "static/js/main.9cdeae06.js"
+    "static/js/main.64620745.js"
   ]
 }
