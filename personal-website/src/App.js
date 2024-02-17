@@ -3,10 +3,11 @@ import ChatWindow from "./components/ChatWindow";
 import Header from "./components/Header";
 
 function App() {
+  // previously had h-full overflow-y-hidden
   return (
-    <div className="App h-full overflow-y-hidden">
-      <Header />
-      <ChatWindow />
+    <div className="App ">
+      {/* <Header />
+      <ChatWindow /> */}
     </div>
   );
 }
