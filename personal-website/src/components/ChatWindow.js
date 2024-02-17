@@ -105,7 +105,7 @@ export default function ChatWindow() {
 
   return (
     <div className="w-[98%] left-[2%] h-[60%] laptop:w-[59%] mx-auto laptop:h-[55%] absolute laptop:left-[20.5%] top-1/4">
-      <div className="laptop:mt-10 h-full container overflow-y-auto pr-3 flex flex-col-reverse">
+      <div className="laptop:mt-10 special-height container overflow-y-auto pr-3 flex flex-col-reverse">
         <ul className="flex flex-col">
           <li className="text-center mb-3 max-sm:ml-3">
             <div className="text-4xl laptop:text-5xl font-bold mt-20 laptop:mt-20">
@@ -126,33 +126,31 @@ export default function ChatWindow() {
           ))}
         </ul>
       </div>
-      <div className="fixed-container">
-        <div className="relative-container">
-          <form action="">
-            <input
-              type="text"
-              className="text-black rounded-full w-[80%] ml-2 laptop:w-[85%] mt-10 pl-3"
-              placeholder="What are your career plans?"
-              onChange={(event) => {
-                setInputMessage(event.target.value);
-              }}
-              value={inputMessage}
-              onKeyDown={handleKeyPress}
-            />
-            <button
-              id="sender"
-              className="ml-3 mb-3 send "
-              onClick={() =>
-                getChatBotResponse({
-                  name: "you",
-                  role: "user",
-                  content: inputMessage,
-                })
-              }
-            >
-              Send
-            </button>
-          </form>
+      <div className="fixed-container w-full">
+        <div className="relative-container w-full">
+          <input
+            type="text"
+            className="text-black rounded-full ml-2 w-[80%] laptop:w-[52%] mt-10 pl-3"
+            placeholder="What are your career plans?"
+            onChange={(event) => {
+              setInputMessage(event.target.value);
+            }}
+            value={inputMessage}
+            onKeyDown={handleKeyPress}
+          />
+          <button
+            id="sender"
+            className="ml-3 send "
+            onClick={() =>
+              getChatBotResponse({
+                name: "you",
+                role: "user",
+                content: inputMessage,
+              })
+            }
+          >
+            Send
+          </button>
         </div>
       </div>
     </div>

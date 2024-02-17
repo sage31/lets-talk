@@ -105,12 +105,14 @@
   position: fixed;
   bottom: 1/4;
   right: 1/2;
-  width: 80%;
   margin-top: 0;
   z-index: 100;
 }
 .relative-container {
   position: relative;
   opacity: 1;
-  width: 100%;
+}
+
+.special-height {
+  height: calc(100% - 50px);
 }
