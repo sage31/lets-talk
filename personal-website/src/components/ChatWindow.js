@@ -111,7 +111,7 @@ export default function ChatWindow() {
             <div className="text-4xl laptop:text-5xl font-bold mt-20 laptop:mt-20">
               Let's talk.
             </div>
-            <div className="text-sm font-bold mt-2 mb-40 laptop:mb-24">
+            <div className="text-sm font-bold mt-2 mb-20 laptop:mb-24">
               Additional questions? Email stephenwdean@gmail.com
             </div>
           </li>
