@@ -25,7 +25,7 @@ export default function ChatWindow() {
             profileImgSrc: "./images/me.jpg",
             content: value,
           },
-        ])
+        ]),
       );
     });
   }
@@ -89,7 +89,7 @@ export default function ChatWindow() {
           () => {
             document.body.style.backgroundColor = inputColor;
           },
-          false
+          false,
         );
 
         input.addEventListener(
@@ -97,21 +97,21 @@ export default function ChatWindow() {
           () => {
             document.body.style.backgroundColor = backgroundColor;
           },
-          false
+          false,
         );
       }
     }
   });
 
   return (
-    <div className="w-[98%] left-[2%] h-[60%] laptop:w-[59%] mx-auto laptop:h-[55%] absolute laptop:left-[20.5%] top-1/4">
-      <div className="laptop:mt-10 special-height container overflow-y-auto pr-3 flex flex-col-reverse">
+    <div className="absolute left-[2%] top-1/4 mx-auto h-[60%] w-[98%] laptop:left-[20.5%] laptop:h-[55%] laptop:w-[59%]">
+      <div className="special-height container flex flex-col-reverse overflow-y-auto pr-3 laptop:mt-10">
         <ul className="flex flex-col">
-          <li className="text-center mb-3 max-sm:ml-3">
-            <div className="text-4xl laptop:text-5xl font-bold mt-20 laptop:mt-20">
+          <li className="mb-3 text-center max-sm:ml-3">
+            <div className="mt-20 text-4xl font-bold laptop:mt-20 laptop:text-5xl">
               Let's talk.
             </div>
-            <div className="text-sm font-bold mt-2 mb-20 laptop:mb-24">
+            <div className="mb-20 mt-2 text-sm font-bold laptop:mb-24">
               Additional questions? Email stephenwdean@gmail.com
             </div>
           </li>
@@ -130,7 +130,7 @@ export default function ChatWindow() {
         <div className="relative-container w-full">
           <input
             type="text"
-            className="text-black rounded-full ml-2 w-[80%] laptop:w-[52%] mt-10 pl-3"
+            className="ml-2 mt-10 w-[80%] rounded-full pl-3 text-black laptop:w-[52%]"
             placeholder="What are your career plans?"
             onChange={(event) => {
               setInputMessage(event.target.value);
@@ -140,7 +140,7 @@ export default function ChatWindow() {
           />
           <button
             id="sender"
-            className="ml-3 send "
+            className="send ml-3 "
             onClick={() =>
               getChatBotResponse({
                 name: "you",
