@@ -4,7 +4,7 @@ import Header from "./components/Header";
 
 function App() {
   return (
-    <div className="App overflow-y-hidden">
+    <div className="App h-full overflow-y-hidden">
       <Header />
       <ChatWindow />
     </div>
