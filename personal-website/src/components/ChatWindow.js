@@ -104,7 +104,7 @@ export default function ChatWindow() {
   });
 
   return (
-    <div className="absolute left-[2%] top-1/4 mx-auto h-[65%] w-[98%] laptop:left-[20.5%] laptop:h-[55%] laptop:w-[59%]">
+    <div className="absolute bottom-[6%] left-[2%] mx-auto h-[80%] w-[98%] laptop:bottom-[14%] laptop:left-[20.5%] laptop:h-[68%] laptop:w-[59%]">
       <div className="special-height container flex flex-col-reverse overflow-y-auto pr-3 laptop:mt-10">
         <ul className="flex flex-col">
           <li className="mb-3 text-center max-sm:ml-3">
