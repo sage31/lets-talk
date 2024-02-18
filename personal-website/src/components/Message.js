@@ -9,7 +9,7 @@ export default function Message({ messageData }) {
   let nameStyle = "text-sm mt-8 ";
 
   if (messageData.role === "user") {
-    messageBaseStyle += " mr-4 ";
+    messageBaseStyle += " mr-4";
     dotStyle += "float-right mr-2";
     nameStyle += "text-right";
   } else {
@@ -35,31 +35,36 @@ export default function Message({ messageData }) {
 
       const words = messageElement.innerHTML.split(" ");
       const lengthOfSpace = getLength(" ");
-      let lengthOfLine = 0;
+      let lengthOfLine = 26;
       let maxElementWidth =
         window.innerWidth > 640
           ? 28 * parseFloat(getComputedStyle(document.documentElement).fontSize)
           : 20 *
             parseFloat(getComputedStyle(document.documentElement).fontSize);
       let maxLineLengthSoFar = 0;
+      console.log(maxElementWidth);
+      console.log("space len ", lengthOfSpace);
 
       for (let i = 0; i < words.length; i++) {
         if (words[i] === "") continue;
 
         const curWord = getLength(words[i]);
+        console.log("Word: ", words[i], " len", curWord);
+
         if (
           lengthOfLine + (i === 0 ? 0 : lengthOfSpace) + curWord >
           maxElementWidth
         ) {
           if (lengthOfLine > maxLineLengthSoFar) {
             maxLineLengthSoFar = lengthOfLine;
-            lengthOfLine = 0;
+            lengthOfLine = 26;
           }
         } else {
           lengthOfLine += (i === 0 ? 0 : lengthOfSpace) + curWord;
         }
       }
       if (maxLineLengthSoFar !== 0) {
+        console.log(maxLineLengthSoFar);
         messageElement.style.width = maxLineLengthSoFar + "px";
       }
     }
