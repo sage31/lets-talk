@@ -64,7 +64,7 @@ export default function ChatWindow() {
 
   return (
     <div className="absolute bottom-[6%] left-[2%] mx-auto h-[70%] w-[98%] laptop:bottom-[14%] laptop:left-[20.5%] laptop:h-[62%] laptop:w-[59%]">
-      <div className="h-[calc(100% - 20px)] container flex flex-col-reverse overflow-y-auto pr-3 laptop:mt-10">
+      <div className="container flex h-[calc(100%-20px)] flex-col-reverse overflow-y-auto pr-3 laptop:mt-10">
         <ul className="flex flex-col">
           <li className="mb-3 text-center max-sm:ml-3">
             <div className="mt-20 text-4xl font-bold laptop:mt-20 laptop:text-5xl">
