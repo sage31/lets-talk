@@ -76,36 +76,36 @@ export default function ChatWindow() {
       return "unknown";
     }
   };
-  document.addEventListener("DOMContentLoaded", () => {
-    "use strict";
-    const input = document.querySelector("input");
-    const inputColor = "white";
-    const backgroundColor = "black";
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   "use strict";
+  //   const input = document.querySelector("input");
+  //   const inputColor = "white";
+  //   const backgroundColor = "black";
 
-    if (input) {
-      if (getMobileOperatingSystem() === "ios") {
-        input.addEventListener(
-          "focus",
-          () => {
-            document.body.style.backgroundColor = inputColor;
-          },
-          false,
-        );
+  //   if (input) {
+  //     if (getMobileOperatingSystem() === "ios") {
+  //       input.addEventListener(
+  //         "focus",
+  //         () => {
+  //           document.body.style.backgroundColor = inputColor;
+  //         },
+  //         false,
+  //       );
 
-        input.addEventListener(
-          "focusout",
-          () => {
-            document.body.style.backgroundColor = backgroundColor;
-          },
-          false,
-        );
-      }
-    }
-  });
+  //       input.addEventListener(
+  //         "focusout",
+  //         () => {
+  //           document.body.style.backgroundColor = backgroundColor;
+  //         },
+  //         false,
+  //       );
+  //     }
+  //   }
+  // });
 
   return (
     <div className="absolute bottom-[6%] left-[2%] mx-auto h-[70%] w-[98%] laptop:bottom-[14%] laptop:left-[20.5%] laptop:h-[62%] laptop:w-[59%]">
-      <div className="special-height container flex flex-col-reverse overflow-y-auto pr-3 laptop:mt-10">
+      <div className="h-[calc(100% - 20px)] container flex flex-col-reverse overflow-y-auto pr-3 laptop:mt-10">
         <ul className="flex flex-col">
           <li className="mb-3 text-center max-sm:ml-3">
             <div className="mt-20 text-4xl font-bold laptop:mt-20 laptop:text-5xl">
@@ -126,8 +126,8 @@ export default function ChatWindow() {
           ))}
         </ul>
       </div>
-      <div className="fixed-container w-full">
-        <div className="relative-container w-full">
+      <div className="fixed bottom-[3%] z-50 mt-0 flex w-full  flex-row">
+        <div className="relative w-full opacity-100">
           <input
             type="text"
             className="ml-2 mt-10 w-[80%] rounded-full pl-3 text-black laptop:w-[52%]"
