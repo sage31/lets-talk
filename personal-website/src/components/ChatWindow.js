@@ -54,7 +54,6 @@ export default function ChatWindow() {
 
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
-      // If Enter key is pressed, simulate a click on the button
       getChatBotResponse({
         name: "you",
         role: "user",
@@ -62,46 +61,6 @@ export default function ChatWindow() {
       });
     }
   };
-
-  const getMobileOperatingSystem = () => {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    // Windows Phone must come first because its UA also contains "Android"
-    if (/windows phone/i.test(userAgent)) {
-      return "windows";
-    } else if (/android/i.test(userAgent)) {
-      return "android";
-    } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-      return "ios";
-    } else {
-      return "unknown";
-    }
-  };
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   "use strict";
-  //   const input = document.querySelector("input");
-  //   const inputColor = "white";
-  //   const backgroundColor = "black";
-
-  //   if (input) {
-  //     if (getMobileOperatingSystem() === "ios") {
-  //       input.addEventListener(
-  //         "focus",
-  //         () => {
-  //           document.body.style.backgroundColor = inputColor;
-  //         },
-  //         false,
-  //       );
-
-  //       input.addEventListener(
-  //         "focusout",
-  //         () => {
-  //           document.body.style.backgroundColor = backgroundColor;
-  //         },
-  //         false,
-  //       );
-  //     }
-  //   }
-  // });
 
   return (
     <div className="absolute bottom-[6%] left-[2%] mx-auto h-[70%] w-[98%] laptop:bottom-[14%] laptop:left-[20.5%] laptop:h-[62%] laptop:w-[59%]">
@@ -126,8 +85,8 @@ export default function ChatWindow() {
           ))}
         </ul>
       </div>
-      <div className="fixed bottom-[3%] z-50 mt-0 flex w-full  flex-row">
-        <div className="relative w-full opacity-100">
+      <div className="fixed-container w-full">
+        <div className="relative-container w-full">
           <input
             type="text"
             className="ml-2 mt-10 w-[80%] rounded-full pl-3 text-black laptop:w-[52%]"

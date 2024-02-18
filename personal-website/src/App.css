@@ -77,7 +77,7 @@
   border-radius: 50%;
 }
 
-/* .fixed-container {
+.fixed-container {
   display: flex;
   flex-direction: row;
   position: fixed;
@@ -89,7 +89,7 @@
 .relative-container {
   position: relative;
   opacity: 1;
-} */
+}
 
 .special-height {
   height: calc(100% - 20px);

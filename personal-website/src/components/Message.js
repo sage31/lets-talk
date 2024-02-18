@@ -42,15 +42,10 @@ export default function Message({ messageData }) {
           : 20 *
             parseFloat(getComputedStyle(document.documentElement).fontSize);
       let maxLineLengthSoFar = 0;
-      console.log(maxElementWidth);
-      console.log("space len ", lengthOfSpace);
 
       for (let i = 0; i < words.length; i++) {
         if (words[i] === "") continue;
-
         const curWord = getLength(words[i]);
-        console.log("Word: ", words[i], " len", curWord);
-
         if (
           lengthOfLine + (i === 0 ? 0 : lengthOfSpace) + curWord >
           maxElementWidth
@@ -64,7 +59,6 @@ export default function Message({ messageData }) {
         }
       }
       if (maxLineLengthSoFar !== 0) {
-        console.log(maxLineLengthSoFar);
         messageElement.style.width = maxLineLengthSoFar + "px";
       }
     }
