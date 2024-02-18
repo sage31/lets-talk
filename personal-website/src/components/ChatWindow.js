@@ -9,10 +9,13 @@ export default function ChatWindow() {
       content: "Ask me anything!",
     },
   ]);
+  const [allowRequests, setAllowRequests] = useState(true);
 
   const [inputMessage, setInputMessage] = useState("");
 
   function getChatBotResponse(message) {
+    if (!allowRequests) return;
+    setAllowRequests(false);
     setInputMessage("");
     let tmpMessages = messages.concat([message]);
     setMessages(tmpMessages);
@@ -50,6 +53,7 @@ export default function ChatWindow() {
       partial += decoder.decode(value).replaceAll("~", "");
       update(partial);
     }
+    setAllowRequests(true);
   }
 
   const handleKeyPress = (event) => {
@@ -99,7 +103,8 @@ export default function ChatWindow() {
           />
           <button
             id="sender"
-            className="send ml-3 "
+            className={allowRequests ? "send ml-3" : "send-disabled ml-3"}
+            disabled={!allowRequests}
             onClick={() =>
               getChatBotResponse({
                 name: "you",

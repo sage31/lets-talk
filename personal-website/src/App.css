@@ -70,6 +70,10 @@
   }
 }
 
+.send-disabled {
+  color: rgb(137, 137, 137);
+}
+
 .dot {
   height: 20px;
   width: 20px;
