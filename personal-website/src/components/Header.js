@@ -1,6 +1,10 @@
 import { Textfit } from "react-textfit";
 
 export default function Header() {
+  const RESUME_URL = `https://docs.google.com/document/d/11OdNfTwyVy1r4Cw_RiOcNZXbNFCecW_f/edit?usp=sharing&ouid=104446278302311002073&rtpof=true&sd=true`;
+  const LINKEDIN_URL = `https://www.linkedin.com/in/stephendean4/`;
+  const GITHUB_URL = `https://github.com/sage31`;
+
   return (
     <div className="relative mx-auto w-[95%] pt-10 laptop:w-[59%] laptop:pt-0">
       <div className="flex w-full items-end">
@@ -16,7 +20,7 @@ export default function Header() {
                 Stevie Dean |&nbsp;
                 <div className="mt-1 flex items-center text-xs font-light laptop:items-end laptop:text-lg lg:text-2xl">
                   <a
-                    href="https://docs.google.com/document/d/1VTOeQvjoh9H5I34Ci9Hzr04WyFetJ8yR/edit?usp=sharing&ouid=104446278302311002073&rtpof=true&sd=true"
+                    href={RESUME_URL}
                     target="_blank"
                     rel="noreferrer"
                     className="social-link mr-2 inline text-chill-blue laptop:mr-4"
@@ -25,7 +29,7 @@ export default function Header() {
                   </a>
                   <span className="text-gray-300">|</span>
                   <a
-                    href="https://www.linkedin.com/in/stephendean4/"
+                    href={LINKEDIN_URL}
                     target="_blank"
                     rel="noreferrer"
                     className="social-link mx-2 inline text-chill-blue laptop:mx-4"
@@ -34,7 +38,7 @@ export default function Header() {
                   </a>
                   <span className="text-gray-300">|</span>
                   <a
-                    href="https://github.com/sage31"
+                    href={GITHUB_URL}
                     target="_blank"
                     rel="noreferrer"
                     className="social-link ml-2 inline text-chill-blue laptop:ml-4"
@@ -50,7 +54,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-
       <hr className="absolute top-[100%] w-[95%] w-full" height="10px"></hr>
     </div>
   );
