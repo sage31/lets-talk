@@ -11,9 +11,9 @@ module.exports = {
         "chill-blue": "#6F85AE",
       },
       fontSize: {
-        sml: "1.5vw",
-        mdl: "2.1vw",
-        lgl: "3.0vw",
+        sml: "1.5vw", // Laptop size
+        mdl: "2.1vw", // Laptop size
+        lgl: "3.0vw", // Laptop size
         md: "3.2vw",
         lg: "4.5vw",
         xl: "8vw",
