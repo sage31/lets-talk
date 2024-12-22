@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Message from "./Message";
 import { MessageData } from "./utils";
 
@@ -11,12 +11,17 @@ export default function ChatWindow() {
       content: "Ask me anything!",
     },
   ] as MessageData[]);
-  const [allowRequests, setAllowRequests] = useState(true);
+  const [allowRequests, setAllowRequests] = useState(false);
+  const [isGettingResponse, setIsGettingResponse] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
+
+  useEffect(() => {
+    setAllowRequests(!isGettingResponse && inputMessage.length > 0);
+  }, [isGettingResponse, inputMessage]);
 
   function getChatBotResponse(message: MessageData) {
     if (!allowRequests) return;
-    setAllowRequests(false);
+    setIsGettingResponse(true);
     setInputMessage("");
     let tmpMessages = messages.concat([message]);
     let messagesWithLoading = tmpMessages.concat([
@@ -50,36 +55,49 @@ export default function ChatWindow() {
   ) {
     const url =
       "https://3p6ynoc4j3yrxcqppkgkujdaoy0vkacn.lambda-url.us-west-1.on.aws/";
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messages: [...messages, message],
-      }),
-    });
-    if (!response.body) {
-      updateAssistantMessage(
-        "\nIt seems I'm having trouble connecting. Please try again later."
-      );
-      console.error("No response body");
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          messages: [...messages, message],
+        }),
+      });
+      if (!response.body) {
+        handleErrorResponse("No response body", updateAssistantMessage);
+        return;
+      }
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let partial = "";
+      let done = false;
+      let value;
+      while (!done) {
+        ({ done, value } = await reader.read());
+        partial += decoder.decode(value).replaceAll("~", "");
+        updateAssistantMessage(partial);
+      }
+      setIsGettingResponse(false);
+    } catch (e: any) {
+      handleErrorResponse(e, updateAssistantMessage);
       return;
     }
-    const reader = response.body.getReader();
-    const decoder = new TextDecoder("utf-8");
-    let partial = "";
-    let done = false;
-    let value;
-    while (!done) {
-      ({ done, value } = await reader.read());
-      partial += decoder.decode(value).replaceAll("~", "");
-      updateAssistantMessage(partial);
-    }
-    setAllowRequests(true);
   }
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+  function handleErrorResponse(
+    error: any,
+    updateAssistantMessage: (content: string) => void
+  ) {
+    updateAssistantMessage(
+      `It seems I'm having trouble connecting. Please try again later.`
+    );
+    console.error(error);
+    setIsGettingResponse(false);
+  }
+
+  function handleKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
       getChatBotResponse({
         name: "you",
@@ -87,7 +105,7 @@ export default function ChatWindow() {
         content: inputMessage,
       });
     }
-  };
+  }
 
   return (
     <div className="flex flex-1 flex-col items-center overflow-hidden">
