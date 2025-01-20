@@ -76,7 +76,8 @@ export default function ChatWindow() {
       let value;
       while (!done) {
         ({ done, value } = await reader.read());
-        partial += decoder.decode(value).replaceAll("~", "");
+        value = value?.filter( v => v!= 0xFF); // Remove invalid chars from stream.
+        partial += decoder.decode(value);
         updateAssistantMessage(partial);
       }
       setIsGettingResponse(false);
