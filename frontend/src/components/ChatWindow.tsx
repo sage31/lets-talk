@@ -3,6 +3,7 @@ import Message from "./Message";
 import { MessageData } from "./utils";
 
 export default function ChatWindow() {
+  const [threadId, setThreadId] = useState("");
   const [messages, setMessages] = useState([
     {
       name: "Stevie Dean (AI)",
@@ -60,11 +61,18 @@ export default function ChatWindow() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Thread-Id": threadId,
         },
         body: JSON.stringify({
-          messages: [...messages, message],
+          message: {
+            role: message.role,
+            content: message.content,
+          },
         }),
       });
+      if (response.headers.get("thread-id")) {
+        setThreadId(response.headers.get("thread-id")!);
+      }
       if (!response.body) {
         handleErrorResponse("No response body", updateAssistantMessage);
         return;
@@ -76,7 +84,7 @@ export default function ChatWindow() {
       let value;
       while (!done) {
         ({ done, value } = await reader.read());
-        value = value?.filter( v => v!= 0xFF); // Remove invalid chars from stream.
+        value = value?.filter((v) => v != 0xff); // Remove invalid chars from stream.
         partial += decoder.decode(value);
         updateAssistantMessage(partial);
       }
