@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import Message from "./Message";
 import { MessageData } from "./utils";
 
+const baseUrl = import.meta.env.BASE_URL || "/";
+
 export default function ChatWindow() {
   const [threadId, setThreadId] = useState("");
   const [messages, setMessages] = useState([
     {
       name: "Stevie Dean (AI)",
       role: "assistant",
-      profileImgSrc: `/lets-talk/images/me.jpg`,
+      profileImgSrc: `${baseUrl}images/me.jpg`,
       content: "Ask me anything!",
     },
   ] as MessageData[]);
@@ -29,7 +31,7 @@ export default function ChatWindow() {
       {
         name: "Stevie Dean (AI)",
         role: "assistant",
-        profileImgSrc: `/lets-talk/images/me.jpg`,
+        profileImgSrc: `${baseUrl}images/me.jpg`,
         content: "",
         isLoading: true,
       },
@@ -41,7 +43,7 @@ export default function ChatWindow() {
           {
             name: "Stevie Dean (AI)",
             role: "assistant",
-            profileImgSrc: `/lets-talk/images/me.jpg`,
+            profileImgSrc: `${baseUrl}images/me.jpg`,
             content,
             isLoading: false,
           },
@@ -141,7 +143,7 @@ export default function ChatWindow() {
       <div className="my-4 flex  w-full laptop:w-[59%]">
         <input
           type="text"
-          className="ml-2 flex-1 rounded-full pl-3 text-black "
+          className="ml-2 flex-1 rounded-full pl-3 text-black bg-white"
           placeholder="What are your career plans?"
           onChange={(event) => {
             setInputMessage(event.target.value);

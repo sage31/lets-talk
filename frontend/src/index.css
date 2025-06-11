@@ -1,3 +1,22 @@
+@import "tailwindcss";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@theme {
+  /* Add a custom breakpoint 'laptop' */
+  --breakpoint-laptop: 1025px;
+
+  /* Add custom colors */
+  --color-chill-violet: #5B507A;
+  --color-chill-blue:  #6F85AE;
+
+  /* Add custom font sizes */
+  --text-sml: 1.5vw;
+  --text-mdl: 2.1vw;
+  --text-lgl: 3.0vw;
+  --text-md:  3.2vw;
+  --text-lg:  4.5vw;
+  --text-xl:  8vw;
+}

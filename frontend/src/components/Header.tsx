@@ -1,3 +1,5 @@
+const baseUrl = import.meta.env.BASE_URL || '/';
+
 export default function Header() {
   const RESUME_URL = `https://docs.google.com/document/d/11OdNfTwyVy1r4Cw_RiOcNZXbNFCecW_f/edit?usp=sharing&ouid=104446278302311002073&rtpof=true&sd=true`;
   const LINKEDIN_URL = `https://www.linkedin.com/in/swdean/`;
@@ -7,15 +9,15 @@ export default function Header() {
     <div className=" mx-auto w-[95%] pt-4 laptop:w-[59%] laptop:pt-2">
       <div className="flex w-full items-end">
         <img
-          src={`/lets-talk/images/me_no_bg.png`}
+          src={`${baseUrl}images/me_no_bg.png`}
           alt="Stevie Dean"
           className="inline aspect-auto w-[23%] laptop:pr-4"
         />
         <div className="ml-1 mt-3 self-center laptop:ml-0 laptop:mt-0">
           <div>
-            <span className="laptop:text-lgl inline flex text-lg font-light ">
+            <span className="laptop:text-lgl inline text-lg font-light ">
               Stevie Dean |&nbsp;
-              <div className="text-md laptop:text-mdl mt-2 flex items-center font-light ">
+              <div className="text-md laptop:text-mdl mt-2 inline font-light ">
                 <a
                   href={RESUME_URL}
                   target="_blank"
