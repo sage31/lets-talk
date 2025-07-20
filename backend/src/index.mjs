@@ -12,14 +12,15 @@ export const handler = awslambda.streamifyResponse(
       const { message } = JSON.parse(event.body);
       const previousResponseId = event.headers["response-id"];
 
+      const input = previousResponseId
+        ? [message]
+        : [{ role: "system", content: systemPrompt }, message];
+
       const responseStreamApi = await openai.responses.create({
         model: "gpt-4.1-mini",
         previous_response_id: previousResponseId || undefined,
         stream: true,
-        input: [
-          { role: "system", content: systemPrompt },
-          message
-        ],
+        input,
       });
 
       let responseId = null;
