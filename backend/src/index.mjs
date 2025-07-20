@@ -40,7 +40,7 @@ export const handler = awslambda.streamifyResponse(
             stream = awslambda.HttpResponseStream.from(responseStream, metadata);
             break;
           case "response.output_text.delta":
-            if(!stream) {
+            if (!stream) {
               throw new Error("Stream not initialized before delta event");
             }
             stream.write(responseStreamEvent.delta);
