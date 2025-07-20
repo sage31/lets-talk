@@ -1,0 +1,48 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lets Talk Backend with Function URL
+
+Globals:
+  Function:
+    Timeout: 60
+    Runtime: nodejs22.x
+    
+Resources:
+  LetsTalkFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./src
+      Handler: index.handler
+      Runtime: nodejs22.x
+      MemorySize: 1024
+      Environment:
+        Variables:
+          OPENAI_API_KEY: !Ref OpenAIApiKey
+      FunctionUrlConfig:
+        AuthType: NONE
+        InvokeMode: RESPONSE_STREAM
+        Cors:
+          AllowCredentials: false
+          AllowHeaders:
+            - content-type
+            - response-id
+          AllowMethods:
+            - POST
+          AllowOrigins:
+            - "*"
+          ExposeHeaders:
+            - "response-id"
+
+Parameters:
+  OpenAIApiKey:
+    Type: String
+    Description: OpenAI API Key
+    NoEcho: true
+
+Outputs:
+  LetsTalkFunctionUrl:
+    Description: "Function URL for the Lets Talk Lambda"
+    Value: !GetAtt LetsTalkFunctionUrl.FunctionUrl
+  LetsTalkFunction:
+    Description: "Lets Talk Lambda Function ARN"
+    Value: !GetAtt LetsTalkFunction.Arn

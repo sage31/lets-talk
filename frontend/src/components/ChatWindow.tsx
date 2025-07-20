@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import Message from "./Message";
 import { MessageData } from "./utils";
 
+const API_URL = "https://6eembuo3jvpxqpjkzndenjkwfm0tpmeq.lambda-url.us-west-1.on.aws/";
 const baseUrl = import.meta.env.BASE_URL || "/";
 
 export default function ChatWindow() {
-  const [threadId, setThreadId] = useState("");
+  const [responseId, setResponseId] = useState("");
   const [messages, setMessages] = useState([
     {
       name: "Stevie Dean (AI)",
@@ -56,14 +57,12 @@ export default function ChatWindow() {
     message: MessageData,
     updateAssistantMessage: (content: string) => void
   ) {
-    const url =
-      "https://3p6ynoc4j3yrxcqppkgkujdaoy0vkacn.lambda-url.us-west-1.on.aws/";
     try {
-      const response = await fetch(url, {
+      const response = await fetch(API_URL, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "Thread-Id": threadId,
+          "content-type": "application/json",
+          "response-id": responseId,
         },
         body: JSON.stringify({
           message: {
@@ -72,8 +71,8 @@ export default function ChatWindow() {
           },
         }),
       });
-      if (response.headers.get("thread-id")) {
-        setThreadId(response.headers.get("thread-id")!);
+      if (response.headers.get("response-id")) {
+        setResponseId(response.headers.get("response-id")!);
       }
       if (!response.body) {
         handleErrorResponse("No response body", updateAssistantMessage);

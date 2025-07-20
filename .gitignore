@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Other
+.aws-sam
+system_prompt.txt
+samconfig.toml
+.env
