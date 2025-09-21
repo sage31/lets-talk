@@ -11,13 +11,15 @@ export const handler = awslambda.streamifyResponse(
     try {
       const { message } = JSON.parse(event.body);
       const previousResponseId = event.headers["response-id"];
-
+      if (message.content.length > 10000) {
+        throw new RangeError("Message too long");
+      }
       const input = previousResponseId
         ? [message]
         : [{ role: "system", content: systemPrompt }, message];
 
       const responseStreamApi = await openai.responses.create({
-        model: "gpt-4.1-mini",
+        model: "gpt-5-mini",
         previous_response_id: previousResponseId || undefined,
         stream: true,
         input,
@@ -56,24 +58,41 @@ export const handler = awslambda.streamifyResponse(
         }
       }
     } catch (error) {
-      console.error("INTERNAL ERROR: ", error);
-      const metadata = {
-        statusCode: 500,
-        headers: {
-          "content-type": "text/plain",
-        },
-      };
-      const errorMessage =
-        "Oh no--it seems I'm having difficulties connecting. Please try again later!";
+      let metadata, errorMessage;
+      if (error instanceof RangeError) {
+        metadata = {
+          statusCode: 400,
+          headers: {
+            "content-type": "text/plain",
+          },
+        };
+        errorMessage = "Sorry, your message is too long. Please shorten it.";
+      }
+      else {
+        console.error("INTERNAL ERROR: ", error);
+        metadata = {
+          statusCode: 500,
+          headers: {
+            "content-type": "text/plain",
+          },
+        };
+        errorMessage =
+          "It seems I'm having trouble connecting. Please try again later.";
+      }
       try {
         const stream = awslambda.HttpResponseStream.from(
           responseStream,
           metadata
         );
-        stream.end(errorMessage);
-      } catch (ignore) {
+        stream.write(errorMessage);
+        stream.end();
+      } catch (error) {
+        console.error("Error sending error response:", error);
         // This is a fallback if the headers have already been sent.
-        if (!responseStream.writableEnded) responseStream.end(errorMessage);
+        if (!responseStream.writableEnded) {
+          responseStream.write(errorMessage);
+          responseStream.end();
+        }
         return;
       }
     }

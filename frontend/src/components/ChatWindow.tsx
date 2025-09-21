@@ -71,6 +71,10 @@ export default function ChatWindow() {
           },
         }),
       });
+      if (!response.ok && response.status !== 400) {
+        const errorText = await response.text();
+        throw new Error(`Code ${response.status}: ${errorText}`);
+      }
       if (response.headers.get("response-id")) {
         setResponseId(response.headers.get("response-id")!);
       }
