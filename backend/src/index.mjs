@@ -19,7 +19,7 @@ export const handler = awslambda.streamifyResponse(
         : [{ role: "system", content: systemPrompt }, message];
 
       const responseStreamApi = await openai.responses.create({
-        model: "gpt-5-mini",
+        model: "gpt-4.1-mini",
         previous_response_id: previousResponseId || undefined,
         stream: true,
         input,
