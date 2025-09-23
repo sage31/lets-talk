@@ -1,8 +1,8 @@
 import OpenAI from "openai";
 import fs from "fs";
+import systemPrompt from "./system_prompt.txt";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-const systemPrompt = fs.readFileSync("./system_prompt.txt", "utf-8");
 const invalidUtfChar = 0xff;
 const bigInvalidBytes = Buffer.alloc(1024 * 50, invalidUtfChar); // Helps flush stream
 

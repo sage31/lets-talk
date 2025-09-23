@@ -9,10 +9,12 @@ Globals:
     
 Resources:
   LetsTalkFunction:
+    Metadata:
+      BuildMethod: makefile
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: ./src
-      Handler: index.handler
+      Handler: dist/index.handler
       Runtime: nodejs22.x
       MemorySize: 1024
       Environment:
