@@ -1,5 +1,4 @@
 import OpenAI from "openai";
-import fs from "fs";
 import systemPrompt from "./system_prompt.txt";
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
